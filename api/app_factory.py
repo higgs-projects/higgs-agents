@@ -4,7 +4,6 @@ from contextlib import asynccontextmanager
 
 from configs import higgs_config
 from contexts.wrapper import RecyclableContextVar
-from extensions import ext_fastapi
 from higgs_app import HiggsApp
 
 
@@ -16,13 +15,16 @@ def create_fastapi_app_with_configs() -> HiggsApp:
     create a raw flask app
     with configs loaded from .env file
     """
+
     @asynccontextmanager
     async def lifespan(app: HiggsApp):
         # add an unique identifier to each request
         RecyclableContextVar.increment_thread_recycles()
         yield
 
-    higgs_app = HiggsApp(title="Higgs Agents OpenAPI", version=higgs_config.CURRENT_VERSION, lifespan=lifespan)
+    higgs_app = HiggsApp(
+        title="Higgs Agents OpenAPI", debug=higgs_config.DEBUG, version=higgs_config.CURRENT_VERSION, lifespan=lifespan
+    )
 
     return higgs_app
 
@@ -42,6 +44,7 @@ def initialize_extensions(app: HiggsApp):
         ext_app_metrics,
         ext_compress,
         ext_database,
+        ext_fastapi,
         ext_logging,
         ext_migrate,
         ext_timezone,
@@ -49,11 +52,11 @@ def initialize_extensions(app: HiggsApp):
     )
 
     extensions = [
+        ext_logging,
         ext_app_metrics,
-        ext_fastapi,
         ext_compress,
         ext_database,
-        ext_logging,
+        ext_fastapi,
         ext_migrate,
         ext_timezone,
         ext_warnings,

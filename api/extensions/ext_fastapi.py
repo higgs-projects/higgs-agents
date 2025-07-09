@@ -20,7 +20,7 @@ def init_app(app: HiggsApp):
     from controllers.service_api import service_api_router
 
     # 添加路由
-    app.include_router(service_api_router, prefix="/v1")
+    app.include_router(service_api_router)
 
     # 设置cors
     app.add_middleware(

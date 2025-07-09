@@ -8,6 +8,7 @@ authors = [{ name = "Higgs Agents", email = "rainwzp@gmail.com" }]
 dependencies = [
     "agno==1.7.0",
     "fastapi~=0.110.0",
+    "openai>=1.93.3",
     "psycopg2-binary~=2.9.6",
     "sqlalchemy",
 ]

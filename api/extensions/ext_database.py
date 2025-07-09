@@ -1,5 +1,6 @@
 from higgs_app import HiggsApp
-from models import get_db
+
+# from models import get_db
 
 
 def init_app(app: HiggsApp):

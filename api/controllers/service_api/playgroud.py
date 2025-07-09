@@ -4,7 +4,6 @@ from agno.playground import Playground
 
 # Import agents
 from agents.basic import get_basic_agent
-from controllers.service_api import service_api_router
 
 # Import workflows
 
@@ -26,4 +25,3 @@ if getenv("RUNTIME_ENV") == "dev":
     playground.register_app_on_platform()
 
 playground_router = playground.get_router()
-service_api_router.include_router(playground_router)
