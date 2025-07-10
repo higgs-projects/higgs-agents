@@ -4,9 +4,9 @@ import sys
 from http import HTTPStatus
 from typing import Any
 
-from fastapi import Request
-from fastapi.exceptions import HTTPException
+from fastapi.exceptions import ValidationException
 from fastapi.responses import JSONResponse
+from starlette.exceptions import HTTPException as StarletteHTTPException
 
 from higgs_app import HiggsApp
 
@@ -15,28 +15,13 @@ logger = logging.getLogger(__name__)
 
 
 def init_app(app: HiggsApp):
-    from fastapi.middleware.cors import CORSMiddleware
-
-    from controllers.service_api import service_api_router
-
-    # 添加路由
-    app.include_router(service_api_router)
-
-    # 设置cors
-    app.add_middleware(
-        CORSMiddleware,
-        allow_origins=["*"],
-        allow_credentials=True,
-        allow_methods=["*"],
-        allow_headers=["*"],
-    )
-
     # 处理全局异常
-    @app.exception_handler(Exception)
-    async def custom_exception_handler(request: Request, e: Exception):
+    @app.exception_handler(StarletteHTTPException)
+    @app.exception_handler(ValueError)
+    @app.exception_handler(ValidationException)
+    async def custom_exception_handler(request, e):
         headers = request.headers
-
-        if isinstance(e, HTTPException):
+        if isinstance(e, StarletteHTTPException):
             status_code = e.status_code
             default_data = {
                 "code": re.sub(r"(?<!^)(?=[A-Z])", "_", type(e).__name__).lower(),

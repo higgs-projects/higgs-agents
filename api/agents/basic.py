@@ -1,7 +1,7 @@
 from typing import Optional
 
 from agno.agent import Agent
-from agno.models.openai import OpenAIChat
+from agno.models.deepseek import DeepSeek
 from agno.storage.postgres import PostgresStorage
 
 from models.engine import engine
@@ -20,9 +20,10 @@ def get_basic_agent(
         agent_id="basic-agent",
         session_id=session_id,
         user_id=user_id,
-        model=OpenAIChat(
-            id="deepseek-ai/DeepSeek-V3",
+        model=DeepSeek(
+            id="Pro/deepseek-ai/DeepSeek-V3",
             base_url="https://api.siliconflow.cn/v1",
+            provider="SiliconFlow",
             api_key="sk-unrimqakwitrchsegggqcewjroabvtljztfosyavwgpkvohs",
             max_tokens=8192,
             temperature=0.6,

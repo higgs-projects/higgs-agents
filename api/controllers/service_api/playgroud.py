@@ -1,9 +1,8 @@
-from os import getenv
-
 from agno.playground import Playground
 
 # Import agents
 from agents.basic import get_basic_agent
+from configs import higgs_config
 
 # Import workflows
 
@@ -21,7 +20,7 @@ playground = Playground(
 )
 
 # Log the playground endpoint with app.agno.com
-if getenv("RUNTIME_ENV") == "dev":
+if higgs_config.DEPLOY_ENV == "dev":
     playground.register_app_on_platform()
 
 playground_router = playground.get_router()

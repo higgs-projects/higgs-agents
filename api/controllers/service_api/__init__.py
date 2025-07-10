@@ -1,6 +1,6 @@
 from fastapi import APIRouter
 
-from .index import router as index_router
+from .demo import router as index_router
 from .playgroud import playground_router
 
 service_api_router = APIRouter(prefix="/v1")

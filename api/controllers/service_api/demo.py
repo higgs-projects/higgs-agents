@@ -2,10 +2,10 @@ from fastapi import APIRouter
 
 from configs import higgs_config
 
-router = APIRouter(tags=["Index"])
+router = APIRouter(prefix="/demo", tags=["Demo"])
 
 
-@router.get("/")
+@router.get("/index")
 async def index():
     return {
         "welcome": "Higgs Agents OpenAPI",
