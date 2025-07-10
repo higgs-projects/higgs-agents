@@ -43,7 +43,6 @@ def initialize_extensions(app: HiggsApp):
     from extensions import (
         ext_app_metrics,
         ext_compress,
-        ext_database,
         ext_exception,
         ext_logging,
         ext_migrate,
@@ -56,7 +55,6 @@ def initialize_extensions(app: HiggsApp):
         ext_logging,
         ext_app_metrics,
         ext_compress,
-        ext_database,
         ext_exception,
         ext_router,
         ext_migrate,
