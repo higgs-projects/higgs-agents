@@ -45,7 +45,6 @@ def initialize_extensions(app: HiggsApp):
         ext_compress,
         ext_exception,
         ext_logging,
-        ext_migrate,
         ext_router,
         ext_timezone,
         ext_warnings,
@@ -57,7 +56,6 @@ def initialize_extensions(app: HiggsApp):
         ext_compress,
         ext_exception,
         ext_router,
-        ext_migrate,
         ext_timezone,
         ext_warnings,
     ]
