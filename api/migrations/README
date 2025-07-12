@@ -1,0 +1,19 @@
+#创建迁移文件
+
+uv run alembic -c ./migrations/alembic.ini revision --autogenerate -m "Initial migration"
+
+# 执行迁移
+
+uv run alembic  -c ./migrations/alembic.ini upgrade head
+
+# 回滚迁移
+
+uv run alembic  -c ./migrations/alembic.ini downgrade -1
+
+# 查看当前版本
+
+uv run alembic  -c ./migrations/alembic.ini current
+
+# 查看历史版本
+
+uv run alembic  -c ./migrations/alembic.ini history

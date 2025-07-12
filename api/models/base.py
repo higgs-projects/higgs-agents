@@ -1,7 +1,7 @@
-from sqlalchemy.orm import DeclarativeBase
+from sqlmodel import SQLModel
 
 from models.engine import metadata
 
 
-class Base(DeclarativeBase):
+class Base(SQLModel):
     metadata = metadata

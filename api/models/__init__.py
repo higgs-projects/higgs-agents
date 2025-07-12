@@ -1,5 +1,5 @@
-from .engine import get_db
+from .engine import get_session
 
 __all__ = [
-    "get_db",
+    "get_session",
 ]

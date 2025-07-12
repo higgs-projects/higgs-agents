@@ -1,5 +1,4 @@
-from sqlalchemy import MetaData, create_engine
-from sqlalchemy.orm import sessionmaker
+from sqlmodel import MetaData, Session, create_engine
 
 from configs import higgs_config
 
@@ -15,18 +14,13 @@ metadata = MetaData(naming_convention=POSTGRES_INDEXES_NAMING_CONVENTION)
 
 
 engine = create_engine(
-    url=higgs_config.SQLALCHEMY_DATABASE_URI, 
+    url=higgs_config.SQLALCHEMY_DATABASE_URI,
     echo=higgs_config.SQLALCHEMY_ECHO,
     echo_pool=higgs_config.SQLALCHEMY_ECHO,
     **higgs_config.SQLALCHEMY_ENGINE_OPTIONS,
 )
 
-SessionLocal = sessionmaker(autocommit=False, autoflush=False, bind=engine)
 
-
-def get_db():
-    db = SessionLocal()
-    try:
-        yield db
-    finally:
-        db.close()
+def get_session():
+    with Session(engine) as session:
+        yield session
