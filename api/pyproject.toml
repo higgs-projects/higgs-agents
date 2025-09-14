@@ -6,8 +6,9 @@ readme = "README.md"
 authors = [{ name = "Higgs Agents", email = "rainwzp@gmail.com" }]
 
 dependencies = [
-    "agno==1.7.0",
+    "agno==2.0.3",
     "fastapi~=0.110.0",
+    "gevent~=24.11.1",
     "openai>=1.93.3",
     "psycopg2-binary~=2.9.6",
     "sqlmodel>=0.0.24",

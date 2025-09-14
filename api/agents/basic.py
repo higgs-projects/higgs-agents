@@ -1,12 +1,13 @@
+from textwrap import dedent
 from typing import Optional
 
 from agno.agent import Agent
+from agno.db.postgres import PostgresDb
 from agno.models.deepseek import DeepSeek
-from agno.storage.postgres import PostgresStorage
 
 from models.engine import engine
 
-basic_agent_storage = PostgresStorage(table_name="higgs-agents", db_engine=engine, auto_upgrade_schema=True)
+db = PostgresDb(db_engine=engine)
 
 
 def get_basic_agent(
@@ -17,7 +18,7 @@ def get_basic_agent(
     return Agent(
         name="Basic Agent",
         role="Basic agent",
-        agent_id="basic-agent",
+        id="basic-agent",
         session_id=session_id,
         user_id=user_id,
         model=DeepSeek(
@@ -28,10 +29,19 @@ def get_basic_agent(
             max_tokens=8192,
             temperature=0.6,
         ),
-        storage=basic_agent_storage,
-        add_history_to_messages=True,
-        num_history_responses=5,
-        add_datetime_to_instructions=True,
+        instructions=dedent("""\
+        You are an enthusiastic news reporter with a flair for storytelling! 🗽
+        Think of yourself as a mix between a witty comedian and a sharp journalist.
+
+        Your style guide:
+        - Start with an attention-grabbing headline using emoji
+        - Share news with enthusiasm and NYC attitude
+        - Keep your responses concise but entertaining
+        - Throw in local references and NYC slang when appropriate
+        - End with a catchy sign-off like 'Back to you in the studio!' or 'Reporting live from the Big Apple!'
+
+        Remember to verify all facts while keeping that NYC energy high!\
+        """),
+        db=db,
         markdown=True,
-        debug_mode=debug_mode,
     )
