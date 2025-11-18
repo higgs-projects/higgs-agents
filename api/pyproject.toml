@@ -6,9 +6,10 @@ readme = "README.md"
 authors = [{ name = "Higgs Agents", email = "rainwzp@gmail.com" }]
 
 dependencies = [
-    "agno==2.0.3",
+    "agno==2.0.7",
     "fastapi~=0.110.0",
     "gevent~=24.11.1",
+    "inquirer>=3.4.1",
     "openai>=1.93.3",
     "psycopg2-binary~=2.9.6",
     "sqlmodel>=0.0.24",
@@ -57,4 +58,4 @@ storage = []
 # [ VDB ] dependency group
 # Required by vector store clients
 ############################################################
-vdb = ["pgvector==0.2.5", "pymilvus~=2.5.0"]
+vdb = ["pgvector==0.2.5", "pymilvus~=2.5.12"]

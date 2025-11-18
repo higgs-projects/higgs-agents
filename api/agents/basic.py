@@ -25,7 +25,6 @@ def get_basic_agent(
             id="Pro/deepseek-ai/DeepSeek-V3",
             base_url="https://api.siliconflow.cn/v1",
             provider="SiliconFlow",
-            api_key="sk-unrimqakwitrchsegggqcewjroabvtljztfosyavwgpkvohs",
             max_tokens=8192,
             temperature=0.6,
         ),
@@ -43,5 +42,6 @@ def get_basic_agent(
         Remember to verify all facts while keeping that NYC energy high!\
         """),
         db=db,
+        stream_intermediate_steps=True,
         markdown=True,
     )

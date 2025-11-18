@@ -83,7 +83,7 @@ class DatabaseConfig(BaseSettings):
 
     DB_DATABASE: str = Field(
         description="Name of the database to connect to.",
-        default="dify",
+        default="higgs-agents",
     )
 
     DB_CHARSET: str = Field(

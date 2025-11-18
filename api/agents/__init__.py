@@ -1,4 +1,4 @@
-from agents.basic import get_basic_agent
+from api.agents.basic import get_basic_agent
 
 
 def get_agents() -> list:
